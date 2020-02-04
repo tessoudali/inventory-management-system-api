@@ -37,7 +37,7 @@ class RedisClient {
    *@returns {void}
    */
   async setObject(hash, key, value, expiryTime) {
-    const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
+    const stringValue = await this.forceString(value);
     const keySet = await this.client.hsetAsync(hash, key, stringValue, 'EX', expiryTime);
 
     if (keySet === 0) this.logger.info(`Key: ${key} already exists in redis hash`);
@@ -45,7 +45,22 @@ class RedisClient {
   }
 
   /**
-   *@description Gets object
+   *@description Sets value
+   *@param  {string} key
+   *@param  {object} value
+   *@param  {number} expiryTime - in seconds
+   *@returns {void}
+   */
+  async set(key, value, expiryTime) {
+    const stringValue = await this.forceString(value);
+    const keySet = await this.client.setAsync(key, stringValue, 'EX', expiryTime);
+
+    if (keySet === 0) this.logger.info(`Key: ${key} already exists in redis`);
+    if (keySet === 1) this.logger.info(`Key: ${key} saved to redis`);
+  }
+
+  /**
+   *@description Gets an object
    *@param  {string} hash
    *@param  {string} key
    *@returns {object} - parsed data
@@ -57,13 +72,24 @@ class RedisClient {
   }
 
   /**
+   *@description Gets a value
+   *@param  {string} key
+   *@returns {object} - parsed data
+   */
+  async get(key) {
+    const value = await this.client.getAsync(key);
+
+    return value ? JSON.parse(value) : {};
+  }
+
+  /**
    *@description Deletes keys
    *@param  {string} key
    *@returns {void}
    */
   async deleteKey(key) {
-    this.logger.info(`deleting object with key: ${key}...`);
     await this.client.delAsync(key);
+    this.logger.info(`Object with key: ${key} deleted from redis!`);
   }
 
   /**
@@ -72,6 +98,15 @@ class RedisClient {
    */
   async closeInstance() {
     await this.client.quit();
+  }
+
+  /**
+   *@description Private function to force ket to be strings
+   *@returns {void}
+   */
+  // eslint-disable-next-line class-methods-use-this
+  async forceString(object) {
+    return typeof object === 'string' ? object : JSON.stringify(object);
   }
 }
 

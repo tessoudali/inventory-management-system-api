@@ -1,4 +1,3 @@
-// import { loggers } from 'winston';
 import DocumentNotFound from './RepositoryErrors';
 /**
  * @description BaseRepository
@@ -23,29 +22,8 @@ export default class BaseRepository {
   async create(options) {
     try {
       const document = await this.model.create(options);
-      return document;
-    } catch (error) {
-      throw error;
-    }
-  }
 
-  /**
-   * @description Paginate a model query
-   * @param {Query} query
-   * @param {PaginationOptions} options
-   * @returns {document} Returns paginated documents
-   */
-  async paginate(query, options) {
-    try {
-      const { limit, page } = options;
-      const perPage = Number(limit);
-      const total = await this.model.count(query);
-      const offset = perPage * (page - 1);
-      const pages = Math.ceil(total / perPage);
-      const docs = await query.skip(offset).limit(perPage).exec();
-      return {
-        docs, total, perPage, page, pages,
-      };
+      return document;
     } catch (error) {
       throw error;
     }
@@ -57,14 +35,13 @@ export default class BaseRepository {
    * @param {object} options Query options
    * @returns {document} Returns an array of documents.
    */
-  async findAll(query, options) {
+  async findAll(options) {
     try {
-      const { select, limit, page = 1 } = options;
-      const queryExec = this.model.find(query);
-      queryExec.select(select);
-      return limit
-        ? await this.paginate(queryExec, { limit, page })
-        : await queryExec.exec();
+      const documents = this.model.find(options);
+
+      if (!documents) throw new DocumentNotFound(`${this.name} not found`);
+
+      return documents;
     } catch (error) {
       throw error;
     }
@@ -78,7 +55,9 @@ export default class BaseRepository {
   async findById(id) {
     try {
       const document = await this.model.findOne({ _id: id });
+
       if (!document) throw new DocumentNotFound(`${this.name} not found`);
+
       return document;
     } catch (error) {
       throw error;
@@ -94,25 +73,9 @@ export default class BaseRepository {
   async update(id, options) {
     try {
       const document = await this.model.findOneAndUpdate({ _id: id }, options, { new: true });
-      if (!document) throw new DocumentNotFound(`${this.name} not found`);
-      return document;
-    } catch (error) {
-      throw error;
-    }
-  }
 
-  /**
-   * @description Adds a data to an array
-   * @param {object} query
-   * @param {string} fieldToPushTo
-   * @param {string} value
-   * @returns {Document} Updated document
-   */
-  async pushToArray(query, fieldToPushTo, value) {
-    try {
-      const document = await this.model
-        .findOneAndUpdate(query, { $addToSet: { [fieldToPushTo]: value } }, { new: true });
       if (!document) throw new DocumentNotFound(`${this.name} not found`);
+
       return document;
     } catch (error) {
       throw error;
@@ -127,6 +90,11 @@ export default class BaseRepository {
   async delete(id) {
     try {
       await this.model.deleteOne({ _id: id });
+
+      return {
+        id,
+        status: 'Deleted!',
+      };
     } catch (error) {
       throw error;
     }

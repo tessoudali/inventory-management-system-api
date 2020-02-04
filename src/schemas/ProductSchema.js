@@ -1,17 +1,15 @@
 import BaseSchema from './BaseSchema';
 
-const userSchema = new BaseSchema({
+const productSchema = new BaseSchema({
   name: {
     type: String,
     required: true,
     index: true,
   },
-  age: {
-    type: String,
+  price: {
+    type: Number,
     required: true,
   },
-  sex: {
-    type: String,
-  },
 });
-export default userSchema;
+
+export default productSchema;
