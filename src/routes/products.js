@@ -1,16 +1,16 @@
 import { Router } from 'express';
 
 const createProductsRoute = ({ productsController }) => {
-  // const {
-  //   index, show, create, update, destroy,
-  // } = productsController;
+  const {
+    index, show, create, update, destroy,
+  } = productsController;
 
   const router = Router();
-  router.get('/', productsController.index);
-  router.get('/:id', productsController.show);
-  router.post('/', productsController.create);
-  router.put('/:id', productsController.update);
-  router.delete('/:id', productsController.destroy);
+  router.get('/', index);
+  router.get('/:id', show);
+  router.post('/', create);
+  router.put('/:id', update);
+  router.delete('/:id', destroy);
 
   return router;
 };
