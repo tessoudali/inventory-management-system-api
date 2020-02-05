@@ -35,10 +35,10 @@ class ProductsController {
    * @returns {object} - product
    */
   async create(req, res) {
-    const { name, price } = req.body;
+    const productParams = await this.whitelistParams(req.body);
 
     try {
-      const product = await this.productService.createProduct({ name, price });
+      const product = await this.productService.createProduct(productParams);
       return res.status(200).json(product);
     } catch (error) {
       return res.json(error);
