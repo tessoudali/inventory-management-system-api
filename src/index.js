@@ -3,6 +3,8 @@ import { listModules } from 'awilix';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import SwaggerUI from 'swagger-ui-express';
+import SwaggerDoc from './swagger.json';
 
 const createApp = ({ logger, container, config }) => {
   const app = express();
@@ -15,7 +17,8 @@ const createApp = ({ logger, container, config }) => {
   app.use(bodyParser.urlencoded({ extended: false }));
 
   // Register routes
-  app.get(`/${config.api.prefix}/status`, (req, res) => res.status(200).json({ status: 'OK' }));
+  app.use(`/${config.api.prefix}/docs`, SwaggerUI.serve, SwaggerUI.setup(SwaggerDoc));
+  app.use(`/${config.api.prefix}/status`, (req, res) => res.status(200).json({ status: 'OK' }));
 
   const routes = listModules('routes/*js', { cwd: __dirname });
   routes.forEach((route) => {

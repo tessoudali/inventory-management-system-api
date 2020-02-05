@@ -11,20 +11,46 @@
 
 <br>
 
-This is a framework for easily setting up a node app (API specifically). Dependecies are mostly injected into an IoC container ([Awilix](https://www.npmjs.com/package/awilix) in this case). It tries to enforce reuseability, separation of concern and SRP (Single Responsiblity Principle).
+This is a simple inventory management API. A user can perform basic CRUD operations on the product resource. They can also create, show and delete sales.
 
-![App directory structure](./docs/dir_structure.png)
-
-
-## Dependencies
-
-- [Babel](https://babeljs.io/en/setup)
-- [auto-bind](https://www.npmjs.com/package/auto-bind)
-- [awilix](https://www.npmjs.com/package/awilix)
-- [others...](https://github.com/ebukaume/inventory-management-system-api/blob/master/package.json)
+![API Documentation](./docs/api-doc.png)
 
 
-## Usage
+## Table of Contents
+3. <a href="#tech-stack-used">Tech Stack Used</a>
+4. <a href="#application-features">Application Features</a>
+5. <a href="#how-to-use">How To Use</a>
+6. <a href="#author">Author</a>
+6. <a href="#contributing">Contributing</a>
+7. <a href="#license">License</a>
+
+
+## Tech Stack Used
+
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Body-parser](https://www.npmjs.com/package/body-parser)
+- [Babel](https://babeljs.io) 
+- [Eslint](https://eslint.org/)
+- [Swagger](https://swagger.io/)
+
+## Application Features
+
+A user can
+*  add a product
+*  view a product
+*  view all products
+*  update a product
+*  delete a product
+*  create a sale
+*  view a sale
+*  view all sales
+*  view all sales in a given month
+*  view all sales of a product in a given month
+
+
+
+## How to Use
 
 > Install [MongoDB](https://www.mongodb.com/what-is-mongodb) and [Redis](https://redis.io/download)
 
@@ -56,9 +82,12 @@ $ npm install
 $ npm start
 ```
 
-> Then open your browser and visit `http://127.0.0.1:3000/api/status`. You should see `{"status":"OK"}`. You can also use postman to issue the `GET` request to the status endpoint.
+> Then open your browser and visit `http://127.0.0.1:3000/api/v1/status`. You should see `{"status":"OK"}`. You can also use postman to issue the `GET` request to the status endpoint.
+
+> You can access the API documentation by visiting `http://127.0.0.1:3000/api/v1/docs`
 
 NB: 3000 is the default port when you don't supply a port in the .env; 127.0.0.1 is the default host as well.
+
 
 
 ## Author
