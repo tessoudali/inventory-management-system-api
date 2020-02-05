@@ -34,22 +34,6 @@ class ProductService {
   }
 
   /**
-   * Retrieves a product's details where
-   * @param {object} - option
-   * @returns {object} - product
-   */
-  async retrieveWhere(key, collection) {
-    try {
-      const product = await this.productRepository.where({ key, collection });
-
-      return product;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-
-  /**
    * Retrieves all products
    * @param {number} - id
    * @returns {object} - products

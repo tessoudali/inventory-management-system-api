@@ -23,7 +23,7 @@ class SalesController {
    */
   async index(req, res) {
     const { productId } = req.query;
-    const monthOffset = req.query.month_offset || 0;
+    const monthOffset = req.query.monthOffset || 0;
     const monthAgo = moment().subtract(monthOffset, 'months').startOf('month');
     let queryOptions = {};
 
