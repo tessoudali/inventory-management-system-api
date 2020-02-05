@@ -5,7 +5,7 @@ const createSalesRoute = ({ salesController }) => {
   const { index, show, create } = salesController;
 
   router.get('/', index);
-  router.get('/:product_id', show);
+  router.get('/:productId', show);
   router.post('/', create);
 
   return router;

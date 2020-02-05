@@ -22,7 +22,7 @@ class SalesController {
    * @returns {object} - sales
    */
   async index(req, res) {
-    const { product_id: productId } = req.query;
+    const { productId } = req.query;
     const monthOffset = req.query.month_offset || 0;
     const monthAgo = moment().subtract(monthOffset, 'months').startOf('month');
     let queryOptions = {};
@@ -77,7 +77,7 @@ class SalesController {
     }
   }
 
-  async buildSaleObject({ product_id: productId, quantity }) {
+  async buildSaleObject({ productId, quantity }) {
     const product = await this.productService.retrieveOne(productId);
 
     return { product, quantity, amount: product.price * quantity };
