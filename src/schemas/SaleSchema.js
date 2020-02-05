@@ -1,7 +1,7 @@
 import BaseSchema from './BaseSchema';
 import ProductSchema from './ProductSchema';
 
-const productSchema = new BaseSchema({
+const saleSchema = new BaseSchema({
   product: {
     type: ProductSchema,
     required: true,
@@ -16,4 +16,4 @@ const productSchema = new BaseSchema({
   },
 });
 
-export default productSchema;
+export default saleSchema;
