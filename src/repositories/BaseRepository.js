@@ -36,7 +36,7 @@ export default class BaseRepository {
    */
   async findAll(options) {
     try {
-      const documents = this.model.find(options);
+      const documents = this.model.find(options).sort({ createdAt: -1 });
 
       if (!documents) throw new DocumentNotFound(`${this.name} not found`);
 
