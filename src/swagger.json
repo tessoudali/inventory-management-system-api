@@ -76,7 +76,7 @@
 			}
 		  }
 	  },
-	 "/products/{product_id}": {
+	 "/products/{productId}": {
 		"get": {
 		  "description": "Show action of the products resource",
 		  "summary": "Returns a single product",
@@ -89,7 +89,7 @@
 		  "parameters": [
 			{
 			  "in": "path",
-			  "name": "product_id",
+			  "name": "productId",
 			  "required": true,
 			  "description": "This is the request param ID passed in the params"
 			}
@@ -121,7 +121,7 @@
 			"parameters": [
 			  {
 				"in": "path",
-				"name": "product_id",
+				"name": "productId",
 				"required": true,
 				"description": "This is the request param ID passed in the params"
 			  },
@@ -162,7 +162,7 @@
 			"parameters": [
 			  {
 				"in": "path",
-				"name": "product_id",
+				"name": "productId",
 				"required": true,
 				"description": "This is the request param ID passed in the params"
 			  }
@@ -190,15 +190,29 @@
 			"tags": [
 			  "Sale"
 			],
+			"parameters": [
+				{
+					"in": "query",
+					"name": "productId",
+					"required": false,
+					"description": "The product whose summary is needed"
+				},
+				{
+					"in": "query",
+					"name": "month_offset",
+					"required": false,
+					"description": "How many months back you wish to go"
+				}			
+				],
 			"produces": [
 			  "application/json,"
 			],
 			"responses": {
 			  "200": {
-				"description": "Sucsess"
+				"description": "Success"
 			  },
-			  "401": {
-				"description": "Kindly sign in"
+			  "400": {
+				"description": "Bad Request"
 			  },
 			  "500": {
 				"description": "Internal server error"
@@ -241,7 +255,7 @@
 		  }
 		}
 	  },
-	  "/sales/{sales_id}": {
+	  "/sales/{salesId}": {
 		"get": {
 			"description": "Show action of the sales resource",
 			"summary": "Returns the sale with the given ID",
@@ -299,7 +313,7 @@
     "title": "Sales",
     "type": "object",
     "properties": {
-      "product_id": {
+      "productId": {
         "description": "product ID",
         "type": "string"
       },
@@ -309,11 +323,11 @@
       }
       },
       "example": {
-      "product_id": "5e3a5b098cba561ce019bb2f",
+      "productId": "5e3a5b098cba561ce019bb2f",
       "quantity": 100
       },
       "required": [
-      "product_id, quantity"
+      "productId, quantity"
       ]
     }
 }
