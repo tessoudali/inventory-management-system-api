@@ -22,268 +22,273 @@
 	],
 	"paths": {
 	  "/products": {
-		"get": {
-		  "description": "Index action of the product resource",
-		  "summary": "Returns all the available products",
-		  "tags": [
-			"Product"
-		  ],
-		  "produces": [
-			"application/json,"
-		  ],
-		  "responses": {
-			"200": {
-			  "description": "Sucsess"
-			  },
-			"400": {
-			  "description": "Bad Request"
-			  },
-			"500": {
-			  "description": "Internal server error"
-			  }
-		  }
-		},
-		"post": {
-			"description": "Create action of the product resource",
-			"summary": "Create a new product",
-			"tags": [
-			  "Product"
-			],
-			"produces": [
-			  "application/json"
-			],
-			"parameters": [
-			  {
-				"in": "body",
-				"name": "body",
-				"required": true,
-				"description": "This is the request body object containing product's information",
-				"schema": {
-				  "$ref": "#/definitions/CreateProductrequest"
+			"get": {
+				"description": "Index action of the product resource",
+				"summary": "Returns all the available products",
+				"tags": [
+					"Product"
+				],
+				"produces": [
+					"application/json,"
+				],
+				"responses": {
+					"200": {
+						"description": "Sucsess"
+						},
+					"400": {
+						"description": "Bad Request"
+						},
+					"500": {
+						"description": "Internal server error"
+					}
 				}
-			  }
-			],
-			"responses": {
-			  "200": {
-				"description": "Success"
-			  },
-			  "400": {
-				"description": "Bad Request"
-			  },
-			  "500": {
-				"description": "Internal server error"
-			  }
-			}
+			},
+			"post": {
+				"description": "Create action of the product resource",
+				"summary": "Create a new product",
+				"tags": [
+					"Product"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"description": "This is the request body object containing product's information",
+						"schema": {
+							"$ref": "#/definitions/CreateProductrequest"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
 		  }
 	  },
 	 "/products/{productId}": {
-		"get": {
-		  "description": "Show action of the products resource",
-		  "summary": "Returns a single product",
-		  "tags": [
-			"Product"
-		  ],
-		  "produces": [
-			"application/json"
-		  ],
-		  "parameters": [
-			{
-			  "in": "path",
-			  "name": "productId",
-			  "required": true,
-			  "description": "This is the request param ID passed in the params"
-			}
-		  ],
-		  "responses": {
-			"200": {
-			  "description": "Success"
-			},
-			"400": {
-			  "description": "Bad Request"
-			},
-			"404": {
-			  "description": "Product does not exist"
-			},
-			"500": {
-			  "description": "Internal server error"
-			}
-		  }
-		  },
-		"put": {
-			"description": "Update action of the products resource",
-			"summary": "Updates a product with the given ID",
-			"tags": [
-			  "Product"
-			],
-			"produces": [
-			  "application/json"
-			],
-			"parameters": [
-			  {
-				"in": "path",
-				"name": "productId",
-				"required": true,
-				"description": "This is the request param ID passed in the params"
-			  },
-			  {
-				"in": "body",
-				"name": "body",
-				"required": true,
-				"description": "This is the request body object containing product's details to be updated",
-				"schema": {
-				  "$ref": "#/definitions/CreateProductrequest"
+			"get": {
+				"description": "Show action of the products resource",
+				"summary": "Returns a single product",
+				"tags": [
+					"Product"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "productId",
+						"required": true,
+						"description": "This is the request param ID passed in the params"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Product does not exist"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
 				}
-			  }
-			],
-			"responses": {
-			  "200": {
-				"description": "Success"
-			  },
-			  "400": {
-				"description": "Bad Request"
-			  },
-			  "404": {
-				"description": "Product does not exist"
-			  },
-			  "500": {
-				"description": "Internal server error"
-			  }
-			}
+		  },
+			"put": {
+				"description": "Update action of the products resource",
+				"summary": "Updates a product with the given ID",
+				"tags": [
+					"Product"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "productId",
+						"required": true,
+						"description": "This is the request param ID passed in the params"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"description": "This is the request body object containing product's details to be updated",
+						"schema": {
+							"$ref": "#/definitions/CreateProductrequest"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Product does not exist"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
 		  },
 		  "delete": {
-			"description": "Destroy action of the products resource",
-			"summary": "Deletes a product whose ID is given",
-			"tags": [
-			  "Product"
-			],
-			"produces": [
-			  "application/json"
-			],
-			"parameters": [
-			  {
-				"in": "path",
-				"name": "productId",
-				"required": true,
-				"description": "This is the request param ID passed in the params"
-			  }
-			],
-			"responses": {
-			  "200": {
-				"description": "Success"
-			  },
-			  "400": {
-				"description": "Bad Request"
-			  },
-			  "404": {
-				"description": "Product does not exist"
-			  },
-			  "500": {
-				"description": "Internal server error"
-			  }
-			}
+				"description": "Destroy action of the products resource",
+				"summary": "Deletes a product whose ID is given",
+				"tags": [
+					"Product"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "productId",
+						"required": true,
+						"description": "This is the request param ID passed in the params"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Product does not exist"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
 		  }
 	  },
 	  "/sales": {
-		"get": {
-			"description": "Returns all the sales",
-			"summary": "Gets category profile",
-			"tags": [
-			  "Sale"
-			],
-			"parameters": [
-				{
-					"in": "query",
-					"name": "productId",
-					"required": false,
-					"description": "The product whose summary is needed"
-				},
-				{
-					"in": "query",
-					"name": "month_offset",
-					"required": false,
-					"description": "How many months back you wish to go"
-				}			
+			"get": {
+				"description": "Returns all the sales",
+				"summary": "Gets category profile",
+				"tags": [
+					"Sale"
 				],
-			"produces": [
-			  "application/json,"
-			],
-			"responses": {
-			  "200": {
-				"description": "Success"
-			  },
-			  "400": {
-				"description": "Bad Request"
-			  },
-			  "500": {
-				"description": "Internal server error"
-			  }
-			}
+				"parameters": [
+					{
+						"in": "query",
+						"name": "productId",
+						"required": false,
+						"description": "The product whose summary is needed"
+					},
+					{
+						"in": "query",
+						"name": "monthOffset",
+						"required": false,
+						"description": "How many months back you wish to go"
+					}			
+					],
+				"produces": [
+					"application/json,"
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
 		  },
-		"post": {
-		  "description": "Create action of sales resource",
-		  "summary": "Creates a new sale",
-		  "tags": [
-			"Sale"
-		  ],
-		  "produces": [
-			"application/json"
-		  ],
-		  "parameters": [
-			{
-			  "in": "body",
-			  "name": "body",
-			  "required": true,
-			  "description": "This is the request body object containing sale creation details",
-			  "schema": {
-				"type":"array",
-				"items":{
-					"$ref": "#/definitions/CreateSaleRequest"
-				}				
-			  }
+			"post": {
+				"description": "Create action of sales resource",
+				"summary": "Creates a new sale",
+				"tags": [
+					"Sale"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "This is the request body object containing sale creation details",
+						"schema": {
+							"type":"object",
+							"properties": {
+								"sale": {
+									"type": "object",
+									"example": {
+										"productId": "5e3a5b098cba561ce019bb2f",
+										"quantity": 100
+									}
+								}
+							}			
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
 			}
-		  ],
-		  "responses": {
-			"201": {
-			  "description": "Success"
-			},
-			"400": {
-			  "description": "Bad Request"
-			},
-			"500": {
-			  "description": "Internal server error"
-			}
-		  }
-		}
 	  },
 	  "/sales/{salesId}": {
-		"get": {
-			"description": "Show action of the sales resource",
-			"summary": "Returns the sale with the given ID",
-			"tags": [
-			  "Sale"
-			],
-			"produces": [
-			  "application/json"
-			],
-			"parameters": [
-			  {
-				"in": "path",
-				"name": "salesId",
-				"required": true,
-				"description": "This is the request param ID passed in the params"
-			  }
-			],
-			"responses": {
-			  "200": {
-				"description": "Success"
-			  },
-			  "400": {
-				"description": "Bad Request"
-			  },
-			  "500": {
-				"description": "Internal server error"
-			  }
-			}
+			"get": {
+				"description": "Show action of the sales resource",
+				"summary": "Returns the sale with the given ID",
+				"tags": [
+					"Sale"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "salesId",
+						"required": true,
+						"description": "This is the request param ID passed in the params"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
 		  }
 	  }
 	},  
@@ -308,27 +313,6 @@
 			"required": [
 			  "name, price"
 			]
-	  },
-    "CreateSaleRequest": {
-    "title": "Sales",
-    "type": "object",
-    "properties": {
-      "productId": {
-        "description": "product ID",
-        "type": "string"
-      },
-      "quantity": {
-        "description": "Quantity of product sold",
-        "type": "integer"
-      }
-      },
-      "example": {
-      "productId": "5e3a5b098cba561ce019bb2f",
-      "quantity": 100
-      },
-      "required": [
-      "productId, quantity"
-      ]
-    }
-}
+	  }
+	}
 }
