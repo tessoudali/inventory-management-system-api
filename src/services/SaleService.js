@@ -49,22 +49,6 @@ class SaleService {
   }
 
   /**
-   * Retrieves a sale's details where in
-   * @param {object} - option
-   * @returns {object} - sale
-   */
-  async retrieveWhereIn(key, collection) {
-    try {
-      const sale = await this.saleRepository.where({ key, collection });
-
-      return sale;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-
-  /**
    * Retrieves all sales
    * @param {number} - id
    * @returns {object} - sales
