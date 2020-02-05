@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 const createProductsRoute = ({ productsController }) => {
+  const router = Router();
   const {
     index, show, create, update, destroy,
   } = productsController;
 
-  const router = Router();
   router.get('/', index);
   router.get('/:id', show);
   router.post('/', create);

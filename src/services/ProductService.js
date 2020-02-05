@@ -34,18 +34,34 @@ class ProductService {
   }
 
   /**
+   * Retrieves a product's details where
+   * @param {object} - option
+   * @returns {object} - product
+   */
+  async retrieveWhere(key, collection) {
+    try {
+      const product = await this.productRepository.where({ key, collection });
+
+      return product;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  /**
    * Retrieves all products
    * @param {number} - id
    * @returns {object} - products
    */
-  async retrieveAll() {
+  async retrieveAll(options = {}) {
     try {
       let products;
 
       products = await this.cache.get('products');
       if (products && Object.keys(products).length > 0) return products;
 
-      products = await this.productRepository.findAll({});
+      products = await this.productRepository.findAll(options);
       this.cache.set('products', products, 86400);
 
       return products;
@@ -108,4 +124,5 @@ class ProductService {
     }
   }
 }
+
 export default ProductService;

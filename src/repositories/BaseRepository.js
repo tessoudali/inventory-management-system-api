@@ -31,13 +31,29 @@ export default class BaseRepository {
 
   /**
    * @description Returns all documents
-   * @param {object} query Query options
    * @param {object} options Query options
    * @returns {document} Returns an array of documents.
    */
   async findAll(options) {
     try {
       const documents = this.model.find(options);
+
+      if (!documents) throw new DocumentNotFound(`${this.name} not found`);
+
+      return documents;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * @description Returns all documents meeting the where clause
+   * @param {object} options Query options
+   * @returns {document} Returns an array of documents.
+   */
+  async whereIn({ key, collection }) {
+    try {
+      const documents = this.model.find().where(key).in(collection).exec();
 
       if (!documents) throw new DocumentNotFound(`${this.name} not found`);
 
