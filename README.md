@@ -15,6 +15,8 @@ This is a simple inventory management API. A user can perform basic CRUD operati
 
 ![API Documentation](./docs/api-doc.png)
 
+_The API documentation above can be accessed by visiting http://{host}:{PORT}/{API\_PREFIX}/docs_
+
 
 ## Table of Contents
 3. <a href="#tech-stack-used">Tech Stack Used</a>
