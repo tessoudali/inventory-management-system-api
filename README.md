@@ -29,6 +29,8 @@ This is a simple inventory management API. A user can perform basic CRUD operati
 
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/what-is-mongodb)
+- [Redis](https://redis.io/download)
 - [Body-parser](https://www.npmjs.com/package/body-parser)
 - [Babel](https://babeljs.io) 
 - [Eslint](https://eslint.org/)
